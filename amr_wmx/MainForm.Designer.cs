@@ -46,8 +46,9 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(92, 50);
             this.button1.TabIndex = 1;
-            this.button1.Text = "WMX\r\nCommunication\r\n";
+            this.button1.Text = "Main\r\n";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
@@ -57,6 +58,7 @@
             this.button2.TabIndex = 2;
             this.button2.Text = "Servo\r\nControl";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // MainForm
             // 
@@ -68,6 +70,7 @@
             this.Controls.Add(this.panel1);
             this.Name = "MainForm";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.ResumeLayout(false);
 
         }

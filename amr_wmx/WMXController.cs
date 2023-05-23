@@ -28,7 +28,7 @@ namespace amr_wmx
             return controller;
         }
 
-        #region initialize
+        #region Constructor
         public WMXController()
         {       
             device = new WMX3Api();
@@ -93,9 +93,9 @@ namespace amr_wmx
                 }
                 else
                 {
-                    EngineStatus status = new EngineStatus();
-                    device.GetEngineStatus(ref status);
-                    if (EngineState.Running == status.State)
+                    EngineStatus engStatus = new EngineStatus();
+                    device.GetEngineStatus(ref engStatus);
+                    if (EngineState.Running == engStatus.State)
                     {
                         // Restart Engine
                         device.RestartEngine("C:\\Program Files\\SoftServo\\WMX3\\", 1000);
@@ -131,6 +131,22 @@ namespace amr_wmx
                     coreMotion.AxisControl.SetServoOn(0, 0);
                 }
 
+            }
+        }
+        #endregion
+
+        #region Get Engine Status
+        public EngineStatus GetEngineStatus()
+        {
+            if (null != device)
+            {
+                EngineStatus status = new EngineStatus();
+                device.GetEngineStatus(ref status);
+                return status;
+            }
+            else
+            {
+                return null;
             }
         }
         #endregion
