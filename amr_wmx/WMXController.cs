@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WMX3ApiCLR;
+using static WMX3ApiCLR.Config;
+using static WMX3ApiCLR.Motion;
 
 namespace amr_wmx
 {
@@ -13,11 +15,20 @@ namespace amr_wmx
         private static WMX3Api device;
         private static CoreMotion coreMotion;
         int apiCallError;
-        public WMX3Api WMX3API
+
+        #region Getter
+        public WMX3Api Device
         {
             get { return device; }
-            set { device = value; }
         }
+
+        public CoreMotion CoreMotion 
+        {
+            get { return coreMotion; } 
+        }
+        #endregion
+
+        #region Get Instance
         public static WMXController GetInstance()
         {
             if (null == controller)
@@ -28,11 +39,18 @@ namespace amr_wmx
             return controller;
         }
 
+        public static WMXController NewInstance()
+        {
+            return new WMXController();
+        }
+        #endregion
+
         #region Constructor
         public WMXController()
         {       
             device = new WMX3Api();
-            coreMotion = new CoreMotion();
+            coreMotion = new CoreMotion(device);
+            CreateDevice();
         }
         #endregion
 
@@ -41,7 +59,7 @@ namespace amr_wmx
         {
             if (null != device)
             {
-                apiCallError = device.CreateDevice("C:\\Program Files\\SoftServo\\WMX3\\", DeviceType.DeviceTypeNormal, 1000);
+                apiCallError = device.CreateDevice("C:\\Program Files\\SoftServo\\WMX3\\");
                 if (ErrorCode.SystemInitializationNotDone == apiCallError)
                 {
                     // Error
@@ -122,7 +140,6 @@ namespace amr_wmx
                     // OFF
                     coreMotion.AxisControl.SetServoOn(0, 0);
                 }
-
             }
         }
         #endregion
@@ -140,6 +157,38 @@ namespace amr_wmx
             {
                 return null;
             }
+        }
+        #endregion
+
+        #region GetAxesStatus
+        public CoreMotionAxisStatus[] GetAxesStatus()
+        {
+            var cmStatus = new CoreMotionStatus();
+            coreMotion.GetStatus(ref cmStatus);
+            cmStatus.AxesStatus[0].
+            return cmStatus.AxesStatus;
+        }
+        #endregion
+
+        #region Start Jog
+        public void StartJog(int axis, int vel, int acc, int dec, double jerkAcc, double jerkDel)
+        {
+            JogCommand jogCommand = new JogCommand();
+            jogCommand.Profile.Type = ProfileType.Trapezoidal; // 사다리
+            jogCommand.Axis = axis;
+            jogCommand.Profile.Velocity = vel;
+            jogCommand.Profile.Acc = acc;
+            jogCommand.Profile.Dec = dec;
+            jogCommand.Profile.JerkAccRatio = jerkAcc;
+            jogCommand.Profile.JerkDecRatio = jerkDel;
+            coreMotion.Motion.StartJog(jogCommand);
+        }
+        #endregion
+
+        #region Stop Jog
+        public void StopMotion(int axis)
+        {
+            coreMotion.Motion.Stop(axis);
         }
         #endregion
     }

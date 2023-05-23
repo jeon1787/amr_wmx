@@ -8,6 +8,7 @@ namespace amr_wmx
 {
     public class AClassSupporter
     {
-        public static WMXController controller = WMXController.GetInstance();
+        public static WMXController manualController = WMXController.GetInstance();
+        public static WMXController statusController = WMXController.NewInstance();
     }
 }

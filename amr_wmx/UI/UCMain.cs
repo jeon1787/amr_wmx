@@ -14,6 +14,7 @@ namespace amr_wmx.UI
     public partial class UCMain : UserControl
     {
         EngineStatus engStatue;
+        WMX3Api device;
         
 
         public UCMain()
@@ -21,36 +22,39 @@ namespace amr_wmx.UI
             InitializeComponent();
             timer1.Enabled = true;
         }
+        private void UCMain_Load(object sender, EventArgs e)
+        {
+            device.CreateDevice("C:\\Program Files\\SoftServo\\WMX3\\");
+        }
 
         private void button1_Click(object sender, EventArgs e)
         {
-
-            engStatue = AClassSupporter.controller.GetEngineStatus();
+            engStatue = AClassSupporter.manualController.GetEngineStatus();
             if (null != engStatue)
             {
                 if (EngineState.Running == engStatue.State || EngineState.Communicating == engStatue.State)
                 {
-                    AClassSupporter.controller.StopEngine();
+                    AClassSupporter.manualController.StopEngine();
                 }
                 else
                 {
-                    AClassSupporter.controller.StartEngine();
+                    AClassSupporter.manualController.StartEngine();
                 }
             }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            engStatue = AClassSupporter.controller.GetEngineStatus();
+            engStatue = AClassSupporter.manualController.GetEngineStatus();
             if (null != engStatue)
             {
                 if (EngineState.Communicating == engStatue.State)
                 {
-                    AClassSupporter.controller.StopCommunication();
+                    AClassSupporter.manualController.StopCommunication();
                 }
                 else
                 {
-                    AClassSupporter.controller.StartCommunication();
+                    AClassSupporter.manualController.StartCommunication();
                 }
             }
         }
@@ -58,7 +62,7 @@ namespace amr_wmx.UI
         private void timer1_Tick(object sender, EventArgs e)
         {
             // Engine State
-            engStatue = AClassSupporter.controller.GetEngineStatus();
+            engStatue = AClassSupporter.statusController.GetEngineStatus();
             string engState = "Stopped";
             string commState = "Stopped";
             string button1Text = "ON";
