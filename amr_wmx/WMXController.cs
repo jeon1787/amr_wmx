@@ -83,23 +83,15 @@ namespace amr_wmx
         {
             if (null != device)
             {
-
-                DevicesInfo devInfo = new DevicesInfo();
-                device.GetAllDevices(ref devInfo);
-                if (0 == devInfo.Count)
+                if (false == device.IsDeviceValid())
                 {
-                    // Start Engine : Automatically start engine on CreateDevice().
-                    CreateDevice();
+                    // device is null -> create Device & start Engine
+                    device.CreateDevice("C:\\Program Files\\SoftServo\\WMX3\\");
                 }
                 else
                 {
-                    EngineStatus engStatus = new EngineStatus();
-                    device.GetEngineStatus(ref engStatus);
-                    if (EngineState.Running == engStatus.State)
-                    {
-                        // Restart Engine
-                        device.RestartEngine("C:\\Program Files\\SoftServo\\WMX3\\", 1000);
-                    }
+                    // device is not null -> start Engine
+                    device.StartEngine("C:\\Program Files\\SoftServo\\WMX3\\", 1000);
                 }
 
             }

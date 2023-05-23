@@ -19,10 +19,12 @@ namespace amr_wmx.UI
         public UCMain()
         {
             InitializeComponent();
+            timer1.Enabled = true;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+
             engStatue = AClassSupporter.controller.GetEngineStatus();
             if (null != engStatue)
             {
@@ -57,25 +59,41 @@ namespace amr_wmx.UI
         {
             // Engine State
             engStatue = AClassSupporter.controller.GetEngineStatus();
-            if (null != engStatue)
-            {
-                textBox1.Text = engStatue.State.ToString();
+            string engState = "Stopped";
+            string commState = "Stopped";
+            string button1Text = "ON";
+            string button2Text = "ON";
 
-                // Communication State
-                if (EngineState.Communicating == engStatue.State)
-                {
-                    textBox2.Text = "Communicating";
-                }
-                else
-                {
-                    textBox2.Text = "Uncommunicating";
-                }
-            }
-            else
+            switch (engStatue.State)
             {
-                textBox1.Text = "DeviceNotExist";
-                textBox2.Text = "DeviceNotExist";
+                case EngineState.Idle:
+                    engState = "Idle";
+                    break;
+                case EngineState.Running:
+                    engState = "Running";
+                    button1Text = "OFF";
+                    break;
+                case EngineState.Communicating:
+                    engState = "Communicating";
+                    commState = "Communicating";
+                    button1Text = "OFF";
+                    button2Text = "OFF";
+                    break;
+                case EngineState.Shutdown:
+                    engState = "Shutdown";
+                    break;
+                case EngineState.Unknown:
+                    engState = "Unknown";
+                    break;
+                default:
+                    engState = "Unknown";
+                    commState = "Unknown";
+                    break;
             }
+            textBox1.Text = engState;
+            textBox2.Text = commState;
+            button1.Text = button1Text;
+            button2.Text = button2Text;
         }
     }
 }
