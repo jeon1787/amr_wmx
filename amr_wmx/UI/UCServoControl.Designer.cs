@@ -48,14 +48,14 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.btn_stop = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btn_pot = new System.Windows.Forms.Button();
+            this.lb_pot = new System.Windows.Forms.Label();
+            this.btn_org = new System.Windows.Forms.Button();
+            this.lb_org = new System.Windows.Forms.Label();
+            this.btn_not = new System.Windows.Forms.Button();
+            this.lb_not = new System.Windows.Forms.Label();
             this.lb_axis = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.lb_not = new System.Windows.Forms.Label();
-            this.btn_not = new System.Windows.Forms.Button();
-            this.lb_org = new System.Windows.Forms.Label();
-            this.btn_org = new System.Windows.Forms.Button();
-            this.lb_pot = new System.Windows.Forms.Label();
-            this.btn_pot = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -196,7 +196,7 @@
             // 
             // btn_servo
             // 
-            this.btn_servo.BackColor = System.Drawing.SystemColors.Control;
+            this.btn_servo.BackColor = System.Drawing.Color.White;
             this.btn_servo.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_servo.Location = new System.Drawing.Point(222, 13);
             this.btn_servo.Name = "btn_servo";
@@ -254,6 +254,63 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "AxisStatus";
             // 
+            // btn_pot
+            // 
+            this.btn_pot.BackColor = System.Drawing.Color.White;
+            this.btn_pot.Location = new System.Drawing.Point(582, 15);
+            this.btn_pot.Name = "btn_pot";
+            this.btn_pot.Size = new System.Drawing.Size(31, 29);
+            this.btn_pot.TabIndex = 23;
+            this.btn_pot.UseVisualStyleBackColor = false;
+            // 
+            // lb_pot
+            // 
+            this.lb_pot.AutoSize = true;
+            this.lb_pot.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lb_pot.Location = new System.Drawing.Point(537, 22);
+            this.lb_pot.Name = "lb_pot";
+            this.lb_pot.Size = new System.Drawing.Size(38, 16);
+            this.lb_pot.TabIndex = 22;
+            this.lb_pot.Text = "POT";
+            // 
+            // btn_org
+            // 
+            this.btn_org.BackColor = System.Drawing.Color.White;
+            this.btn_org.Location = new System.Drawing.Point(482, 15);
+            this.btn_org.Name = "btn_org";
+            this.btn_org.Size = new System.Drawing.Size(31, 29);
+            this.btn_org.TabIndex = 21;
+            this.btn_org.UseVisualStyleBackColor = false;
+            // 
+            // lb_org
+            // 
+            this.lb_org.AutoSize = true;
+            this.lb_org.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lb_org.Location = new System.Drawing.Point(437, 22);
+            this.lb_org.Name = "lb_org";
+            this.lb_org.Size = new System.Drawing.Size(40, 16);
+            this.lb_org.TabIndex = 20;
+            this.lb_org.Text = "ORG";
+            // 
+            // btn_not
+            // 
+            this.btn_not.BackColor = System.Drawing.Color.White;
+            this.btn_not.Location = new System.Drawing.Point(384, 15);
+            this.btn_not.Name = "btn_not";
+            this.btn_not.Size = new System.Drawing.Size(31, 29);
+            this.btn_not.TabIndex = 19;
+            this.btn_not.UseVisualStyleBackColor = false;
+            // 
+            // lb_not
+            // 
+            this.lb_not.AutoSize = true;
+            this.lb_not.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lb_not.Location = new System.Drawing.Point(339, 22);
+            this.lb_not.Name = "lb_not";
+            this.lb_not.Size = new System.Drawing.Size(39, 16);
+            this.lb_not.TabIndex = 18;
+            this.lb_not.Text = "NOT";
+            // 
             // lb_axis
             // 
             this.lb_axis.AutoSize = true;
@@ -278,63 +335,6 @@
             this.groupBox2.TabIndex = 19;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "JogCommand";
-            // 
-            // lb_not
-            // 
-            this.lb_not.AutoSize = true;
-            this.lb_not.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lb_not.Location = new System.Drawing.Point(339, 22);
-            this.lb_not.Name = "lb_not";
-            this.lb_not.Size = new System.Drawing.Size(39, 16);
-            this.lb_not.TabIndex = 18;
-            this.lb_not.Text = "NOT";
-            // 
-            // btn_not
-            // 
-            this.btn_not.BackColor = System.Drawing.Color.Gray;
-            this.btn_not.Location = new System.Drawing.Point(384, 15);
-            this.btn_not.Name = "btn_not";
-            this.btn_not.Size = new System.Drawing.Size(31, 29);
-            this.btn_not.TabIndex = 19;
-            this.btn_not.UseVisualStyleBackColor = false;
-            // 
-            // lb_org
-            // 
-            this.lb_org.AutoSize = true;
-            this.lb_org.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lb_org.Location = new System.Drawing.Point(437, 22);
-            this.lb_org.Name = "lb_org";
-            this.lb_org.Size = new System.Drawing.Size(40, 16);
-            this.lb_org.TabIndex = 20;
-            this.lb_org.Text = "ORG";
-            // 
-            // btn_org
-            // 
-            this.btn_org.BackColor = System.Drawing.Color.Gray;
-            this.btn_org.Location = new System.Drawing.Point(482, 15);
-            this.btn_org.Name = "btn_org";
-            this.btn_org.Size = new System.Drawing.Size(31, 29);
-            this.btn_org.TabIndex = 21;
-            this.btn_org.UseVisualStyleBackColor = false;
-            // 
-            // lb_pot
-            // 
-            this.lb_pot.AutoSize = true;
-            this.lb_pot.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lb_pot.Location = new System.Drawing.Point(537, 22);
-            this.lb_pot.Name = "lb_pot";
-            this.lb_pot.Size = new System.Drawing.Size(38, 16);
-            this.lb_pot.TabIndex = 22;
-            this.lb_pot.Text = "POT";
-            // 
-            // btn_pot
-            // 
-            this.btn_pot.BackColor = System.Drawing.Color.Gray;
-            this.btn_pot.Location = new System.Drawing.Point(582, 15);
-            this.btn_pot.Name = "btn_pot";
-            this.btn_pot.Size = new System.Drawing.Size(31, 29);
-            this.btn_pot.TabIndex = 23;
-            this.btn_pot.UseVisualStyleBackColor = false;
             // 
             // UCServoControl
             // 

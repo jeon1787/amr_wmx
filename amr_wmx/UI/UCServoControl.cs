@@ -58,10 +58,12 @@ namespace amr_wmx.UI
                 if (axisStatus.ServoOn)
                 {
                     btn_servo.Text = "OFF";
+                    btn_servo.BackColor = Color.Yellow;
                 }
                 else
                 {
                     btn_servo.Text = "ON";
+                    btn_servo.BackColor= Color.White;
                 }
 
 
@@ -71,9 +73,9 @@ namespace amr_wmx.UI
 
 
                 // Positive Limit, Negative Limit, Home Switch
-                btn_pot.BackColor = axisStatus.PositiveLS ? Color.Yellow : Color.Gray;
-                btn_not.BackColor = axisStatus.NegativeLS ? Color.Yellow : Color.Gray;
-                btn_org.BackColor = axisStatus.HomeSwitch ? Color.Yellow : Color.Gray;
+                btn_pot.BackColor = axisStatus.PositiveLS ? Color.Yellow : Color.White;
+                btn_not.BackColor = axisStatus.NegativeLS ? Color.Yellow : Color.White;
+                btn_org.BackColor = axisStatus.HomeSwitch ? Color.Yellow : Color.White;
             }
             catch (IndexOutOfRangeException e) 
             { 
