@@ -169,12 +169,12 @@ namespace amr_wmx
         }
         #endregion
 
-        #region Start Jog
-        public void StartJog(int axis, double vel, double acc, double dec, double jerkAcc, double jerkDec)
+        #region Velocity Move
+        public void VelMove(int axis, double vel, double acc, double dec, double jerkAcc, double jerkDec)
         {
             JogCommand jogCommand = new JogCommand();
-            jogCommand.Profile.Type = ProfileType.Trapezoidal; // 사다리
             jogCommand.Axis = axis;
+            jogCommand.Profile.Type = ProfileType.Trapezoidal; // 가속도 곡선 : 사다리형
             jogCommand.Profile.Velocity = vel;
             jogCommand.Profile.Acc = acc;
             jogCommand.Profile.Dec = dec;
@@ -184,7 +184,40 @@ namespace amr_wmx
         }
         #endregion
 
-        #region Stop Jog
+
+        #region Relative Move
+        public void RelMove(int axis, double target, double vel, double acc, double dec, double jerkAcc, double jerkDec)
+        {
+            PosCommand posCommand = new PosCommand();
+            posCommand.Axis = axis;
+            posCommand.Target = target;
+            posCommand.Profile.Type = ProfileType.Trapezoidal; // 가속도 곡선 : 사다리형
+            posCommand.Profile.Velocity = vel;
+            posCommand.Profile.Acc = acc;
+            posCommand.Profile.Dec = dec;
+            posCommand.Profile.JerkAccRatio = jerkAcc;
+            posCommand.Profile.JerkDecRatio = jerkDec;
+            coreMotion.Motion.StartMov(posCommand);
+        }
+        #endregion
+
+        #region Absolute Move
+        public void AbsMove(int axis, double target, double vel, double acc, double dec, double jerkAcc, double jerkDec)
+        {
+            PosCommand posCommand = new PosCommand();
+            posCommand.Axis = axis;
+            posCommand.Target = target;
+            posCommand.Profile.Type = ProfileType.Trapezoidal; // 가속도 곡선 : 사다리형
+            posCommand.Profile.Velocity = vel;
+            posCommand.Profile.Acc = acc;
+            posCommand.Profile.Dec = dec;
+            posCommand.Profile.JerkAccRatio = jerkAcc;
+            posCommand.Profile.JerkDecRatio = jerkDec;
+            coreMotion.Motion.StartPos(posCommand);
+        }
+        #endregion
+
+        #region Stop Move
         public void StopMotion(int axis)
         {
             coreMotion.Motion.Stop(axis);

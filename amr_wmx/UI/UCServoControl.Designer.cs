@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.tb_encoder = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -37,16 +37,15 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.tb_speed = new System.Windows.Forms.TextBox();
-            this.tb_accel = new System.Windows.Forms.TextBox();
-            this.tb_jerk = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.btn_plus = new System.Windows.Forms.Button();
-            this.btn_minus = new System.Windows.Forms.Button();
+            this.tb_vspeed = new System.Windows.Forms.TextBox();
+            this.tb_vaccel = new System.Windows.Forms.TextBox();
+            this.tb_vjerk = new System.Windows.Forms.TextBox();
+            this.btn_plus_velmove = new System.Windows.Forms.Button();
+            this.btn_minus_velmove = new System.Windows.Forms.Button();
             this.btn_servo = new System.Windows.Forms.Button();
             this.lb_servo = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.btn_stop = new System.Windows.Forms.Button();
+            this.btn_vstop = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btn_pot = new System.Windows.Forms.Button();
             this.lb_pot = new System.Windows.Forms.Label();
@@ -56,25 +55,54 @@
             this.lb_not = new System.Windows.Forms.Label();
             this.lb_axis = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.tabcontrol1 = new System.Windows.Forms.TabControl();
+            this.tab_velmove = new System.Windows.Forms.TabPage();
+            this.lb_jog = new System.Windows.Forms.Label();
+            this.tab_relmove = new System.Windows.Forms.TabPage();
+            this.tb_rtarget = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.btn_rstop = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.tb_rspeed = new System.Windows.Forms.TextBox();
+            this.btn_relmove = new System.Windows.Forms.Button();
+            this.tb_raccel = new System.Windows.Forms.TextBox();
+            this.tb_rjerk = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.tab_absmove = new System.Windows.Forms.TabPage();
+            this.tb_atarget = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.btn_astop = new System.Windows.Forms.Button();
+            this.label12 = new System.Windows.Forms.Label();
+            this.tb_aspeed = new System.Windows.Forms.TextBox();
+            this.btn_absmove = new System.Windows.Forms.Button();
+            this.tb_aaccel = new System.Windows.Forms.TextBox();
+            this.tb_ajerk = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.tabcontrol1.SuspendLayout();
+            this.tab_velmove.SuspendLayout();
+            this.tab_relmove.SuspendLayout();
+            this.tab_absmove.SuspendLayout();
             this.SuspendLayout();
             // 
-            // comboBox1
+            // comboBox
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(50, 20);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(101, 20);
-            this.comboBox1.TabIndex = 0;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
-            this.comboBox1.SelectionChangeCommitted += new System.EventHandler(this.comboBox1_SelectionChangeCommitted);
+            this.comboBox.FormattingEnabled = true;
+            this.comboBox.Location = new System.Drawing.Point(50, 20);
+            this.comboBox.Name = "comboBox";
+            this.comboBox.Size = new System.Drawing.Size(101, 20);
+            this.comboBox.TabIndex = 0;
+            this.comboBox.SelectedIndexChanged += new System.EventHandler(this.comboBox_SelectedIndexChanged);
+            this.comboBox.SelectionChangeCommitted += new System.EventHandler(this.comboBox_SelectionChangeCommitted);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label1.Location = new System.Drawing.Point(6, 63);
+            this.label1.Location = new System.Drawing.Point(6, 60);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(68, 16);
             this.label1.TabIndex = 1;
@@ -84,6 +112,7 @@
             // 
             this.tb_encoder.Location = new System.Drawing.Point(83, 58);
             this.tb_encoder.Name = "tb_encoder";
+            this.tb_encoder.ReadOnly = true;
             this.tb_encoder.Size = new System.Drawing.Size(85, 21);
             this.tb_encoder.TabIndex = 2;
             this.tb_encoder.Text = "0";
@@ -92,7 +121,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label2.Location = new System.Drawing.Point(219, 63);
+            this.label2.Location = new System.Drawing.Point(219, 60);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(81, 16);
             this.label2.TabIndex = 3;
@@ -102,6 +131,7 @@
             // 
             this.tb_command.Location = new System.Drawing.Point(306, 58);
             this.tb_command.Name = "tb_command";
+            this.tb_command.ReadOnly = true;
             this.tb_command.Size = new System.Drawing.Size(85, 21);
             this.tb_command.TabIndex = 4;
             this.tb_command.Text = "0";
@@ -110,7 +140,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label3.Location = new System.Drawing.Point(6, 72);
+            this.label3.Location = new System.Drawing.Point(34, 19);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(53, 16);
             this.label3.TabIndex = 5;
@@ -120,7 +150,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label4.Location = new System.Drawing.Point(6, 110);
+            this.label4.Location = new System.Drawing.Point(34, 46);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(99, 16);
             this.label4.TabIndex = 6;
@@ -130,69 +160,59 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label6.Location = new System.Drawing.Point(6, 147);
+            this.label6.Location = new System.Drawing.Point(34, 73);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(35, 16);
             this.label6.TabIndex = 7;
             this.label6.Text = "Jerk";
             // 
-            // tb_speed
+            // tb_vspeed
             // 
-            this.tb_speed.Location = new System.Drawing.Point(119, 67);
-            this.tb_speed.Name = "tb_speed";
-            this.tb_speed.Size = new System.Drawing.Size(85, 21);
-            this.tb_speed.TabIndex = 8;
-            this.tb_speed.Text = "0";
+            this.tb_vspeed.Location = new System.Drawing.Point(139, 14);
+            this.tb_vspeed.Name = "tb_vspeed";
+            this.tb_vspeed.Size = new System.Drawing.Size(85, 21);
+            this.tb_vspeed.TabIndex = 8;
+            this.tb_vspeed.Text = "0.0";
             // 
-            // tb_accel
+            // tb_vaccel
             // 
-            this.tb_accel.Location = new System.Drawing.Point(119, 105);
-            this.tb_accel.Name = "tb_accel";
-            this.tb_accel.Size = new System.Drawing.Size(85, 21);
-            this.tb_accel.TabIndex = 9;
-            this.tb_accel.Text = "0";
+            this.tb_vaccel.Location = new System.Drawing.Point(139, 41);
+            this.tb_vaccel.Name = "tb_vaccel";
+            this.tb_vaccel.Size = new System.Drawing.Size(85, 21);
+            this.tb_vaccel.TabIndex = 9;
+            this.tb_vaccel.Text = "0.0";
             // 
-            // tb_jerk
+            // tb_vjerk
             // 
-            this.tb_jerk.Location = new System.Drawing.Point(119, 142);
-            this.tb_jerk.Name = "tb_jerk";
-            this.tb_jerk.Size = new System.Drawing.Size(85, 21);
-            this.tb_jerk.TabIndex = 10;
-            this.tb_jerk.Text = "0.0";
+            this.tb_vjerk.Location = new System.Drawing.Point(139, 68);
+            this.tb_vjerk.Name = "tb_vjerk";
+            this.tb_vjerk.Size = new System.Drawing.Size(85, 21);
+            this.tb_vjerk.TabIndex = 10;
+            this.tb_vjerk.Text = "0.0";
             // 
-            // label7
+            // btn_plus_velmove
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label7.Location = new System.Drawing.Point(122, 333);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(32, 16);
-            this.label7.TabIndex = 12;
-            this.label7.Text = "Jog";
+            this.btn_plus_velmove.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_plus_velmove.Location = new System.Drawing.Point(37, 166);
+            this.btn_plus_velmove.Name = "btn_plus_velmove";
+            this.btn_plus_velmove.Size = new System.Drawing.Size(100, 50);
+            this.btn_plus_velmove.TabIndex = 13;
+            this.btn_plus_velmove.Text = "+";
+            this.btn_plus_velmove.UseVisualStyleBackColor = true;
+            this.btn_plus_velmove.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btn_plus_velmove_MouseDown);
+            this.btn_plus_velmove.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btn_plus_velmove_MouseUp);
             // 
-            // btn_plus
+            // btn_minus_velmove
             // 
-            this.btn_plus.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_plus.Location = new System.Drawing.Point(12, 318);
-            this.btn_plus.Name = "btn_plus";
-            this.btn_plus.Size = new System.Drawing.Size(100, 50);
-            this.btn_plus.TabIndex = 13;
-            this.btn_plus.Text = "+";
-            this.btn_plus.UseVisualStyleBackColor = true;
-            this.btn_plus.MouseDown += new System.Windows.Forms.MouseEventHandler(this.plusButton_MouseDown);
-            this.btn_plus.MouseUp += new System.Windows.Forms.MouseEventHandler(this.plusButton_MouseUp);
-            // 
-            // btn_minus
-            // 
-            this.btn_minus.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_minus.Location = new System.Drawing.Point(160, 318);
-            this.btn_minus.Name = "btn_minus";
-            this.btn_minus.Size = new System.Drawing.Size(100, 50);
-            this.btn_minus.TabIndex = 14;
-            this.btn_minus.Text = "-";
-            this.btn_minus.UseVisualStyleBackColor = true;
-            this.btn_minus.MouseDown += new System.Windows.Forms.MouseEventHandler(this.minusButton_MouseDown);
-            this.btn_minus.MouseUp += new System.Windows.Forms.MouseEventHandler(this.minusButton_MouseUp);
+            this.btn_minus_velmove.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_minus_velmove.Location = new System.Drawing.Point(218, 166);
+            this.btn_minus_velmove.Name = "btn_minus_velmove";
+            this.btn_minus_velmove.Size = new System.Drawing.Size(100, 50);
+            this.btn_minus_velmove.TabIndex = 14;
+            this.btn_minus_velmove.Text = "-";
+            this.btn_minus_velmove.UseVisualStyleBackColor = true;
+            this.btn_minus_velmove.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btn_minus_velmove_MouseDown);
+            this.btn_minus_velmove.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btn_minus_velmove_MouseUp);
             // 
             // btn_servo
             // 
@@ -204,7 +224,7 @@
             this.btn_servo.TabIndex = 15;
             this.btn_servo.Text = "ON";
             this.btn_servo.UseVisualStyleBackColor = false;
-            this.btn_servo.Click += new System.EventHandler(this.button1_Click);
+            this.btn_servo.Click += new System.EventHandler(this.btn_servo_Click);
             // 
             // lb_servo
             // 
@@ -220,16 +240,16 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // btn_stop
+            // btn_vstop
             // 
-            this.btn_stop.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_stop.Location = new System.Drawing.Point(275, 318);
-            this.btn_stop.Name = "btn_stop";
-            this.btn_stop.Size = new System.Drawing.Size(100, 50);
-            this.btn_stop.TabIndex = 17;
-            this.btn_stop.Text = "Manual Stop";
-            this.btn_stop.UseVisualStyleBackColor = true;
-            this.btn_stop.Click += new System.EventHandler(this.button1_Click_1);
+            this.btn_vstop.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_vstop.Location = new System.Drawing.Point(536, 166);
+            this.btn_vstop.Name = "btn_vstop";
+            this.btn_vstop.Size = new System.Drawing.Size(100, 50);
+            this.btn_vstop.TabIndex = 17;
+            this.btn_vstop.Text = "Stop Move";
+            this.btn_vstop.UseVisualStyleBackColor = true;
+            this.btn_vstop.Click += new System.EventHandler(this.btn_vstop_Click);
             // 
             // groupBox1
             // 
@@ -244,7 +264,7 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.tb_encoder);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.comboBox1);
+            this.groupBox1.Controls.Add(this.comboBox);
             this.groupBox1.Controls.Add(this.lb_servo);
             this.groupBox1.Controls.Add(this.btn_servo);
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
@@ -323,18 +343,283 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.label3);
-            this.groupBox2.Controls.Add(this.label4);
-            this.groupBox2.Controls.Add(this.label6);
-            this.groupBox2.Controls.Add(this.tb_speed);
-            this.groupBox2.Controls.Add(this.tb_accel);
-            this.groupBox2.Controls.Add(this.tb_jerk);
-            this.groupBox2.Location = new System.Drawing.Point(6, 100);
+            this.groupBox2.Controls.Add(this.tabcontrol1);
+            this.groupBox2.Location = new System.Drawing.Point(3, 100);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(684, 212);
+            this.groupBox2.Size = new System.Drawing.Size(684, 277);
             this.groupBox2.TabIndex = 19;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "JogCommand";
+            this.groupBox2.Text = "Move Command";
+            // 
+            // tabcontrol1
+            // 
+            this.tabcontrol1.Controls.Add(this.tab_velmove);
+            this.tabcontrol1.Controls.Add(this.tab_relmove);
+            this.tabcontrol1.Controls.Add(this.tab_absmove);
+            this.tabcontrol1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabcontrol1.Location = new System.Drawing.Point(3, 17);
+            this.tabcontrol1.Name = "tabcontrol1";
+            this.tabcontrol1.SelectedIndex = 0;
+            this.tabcontrol1.Size = new System.Drawing.Size(678, 257);
+            this.tabcontrol1.TabIndex = 24;
+            // 
+            // tab_velmove
+            // 
+            this.tab_velmove.Controls.Add(this.lb_jog);
+            this.tab_velmove.Controls.Add(this.label3);
+            this.tab_velmove.Controls.Add(this.btn_vstop);
+            this.tab_velmove.Controls.Add(this.label4);
+            this.tab_velmove.Controls.Add(this.btn_minus_velmove);
+            this.tab_velmove.Controls.Add(this.tb_vspeed);
+            this.tab_velmove.Controls.Add(this.btn_plus_velmove);
+            this.tab_velmove.Controls.Add(this.tb_vaccel);
+            this.tab_velmove.Controls.Add(this.tb_vjerk);
+            this.tab_velmove.Controls.Add(this.label6);
+            this.tab_velmove.Location = new System.Drawing.Point(4, 22);
+            this.tab_velmove.Name = "tab_velmove";
+            this.tab_velmove.Padding = new System.Windows.Forms.Padding(3);
+            this.tab_velmove.Size = new System.Drawing.Size(670, 231);
+            this.tab_velmove.TabIndex = 0;
+            this.tab_velmove.Text = "Velocity Move";
+            this.tab_velmove.UseVisualStyleBackColor = true;
+            // 
+            // lb_jog
+            // 
+            this.lb_jog.AutoSize = true;
+            this.lb_jog.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lb_jog.Location = new System.Drawing.Point(163, 181);
+            this.lb_jog.Name = "lb_jog";
+            this.lb_jog.Size = new System.Drawing.Size(32, 16);
+            this.lb_jog.TabIndex = 18;
+            this.lb_jog.Text = "Jog";
+            // 
+            // tab_relmove
+            // 
+            this.tab_relmove.Controls.Add(this.tb_rtarget);
+            this.tab_relmove.Controls.Add(this.label9);
+            this.tab_relmove.Controls.Add(this.label5);
+            this.tab_relmove.Controls.Add(this.btn_rstop);
+            this.tab_relmove.Controls.Add(this.label7);
+            this.tab_relmove.Controls.Add(this.tb_rspeed);
+            this.tab_relmove.Controls.Add(this.btn_relmove);
+            this.tab_relmove.Controls.Add(this.tb_raccel);
+            this.tab_relmove.Controls.Add(this.tb_rjerk);
+            this.tab_relmove.Controls.Add(this.label8);
+            this.tab_relmove.Location = new System.Drawing.Point(4, 22);
+            this.tab_relmove.Name = "tab_relmove";
+            this.tab_relmove.Padding = new System.Windows.Forms.Padding(3);
+            this.tab_relmove.Size = new System.Drawing.Size(670, 231);
+            this.tab_relmove.TabIndex = 1;
+            this.tab_relmove.Text = "Relative Move";
+            this.tab_relmove.UseVisualStyleBackColor = true;
+            // 
+            // tb_rtarget
+            // 
+            this.tb_rtarget.Location = new System.Drawing.Point(139, 95);
+            this.tb_rtarget.Name = "tb_rtarget";
+            this.tb_rtarget.Size = new System.Drawing.Size(85, 21);
+            this.tb_rtarget.TabIndex = 27;
+            this.tb_rtarget.Text = "0.0";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label9.Location = new System.Drawing.Point(34, 100);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(53, 16);
+            this.label9.TabIndex = 26;
+            this.label9.Text = "Target";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label5.Location = new System.Drawing.Point(34, 19);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(53, 16);
+            this.label5.TabIndex = 18;
+            this.label5.Text = "Speed";
+            // 
+            // btn_rstop
+            // 
+            this.btn_rstop.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_rstop.Location = new System.Drawing.Point(536, 166);
+            this.btn_rstop.Name = "btn_rstop";
+            this.btn_rstop.Size = new System.Drawing.Size(100, 50);
+            this.btn_rstop.TabIndex = 25;
+            this.btn_rstop.Text = "Stop Move";
+            this.btn_rstop.UseVisualStyleBackColor = true;
+            this.btn_rstop.Click += new System.EventHandler(this.btn_rstop_Click);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label7.Location = new System.Drawing.Point(34, 46);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(99, 16);
+            this.label7.TabIndex = 19;
+            this.label7.Text = "Accel(Decel)";
+            // 
+            // tb_rspeed
+            // 
+            this.tb_rspeed.Location = new System.Drawing.Point(139, 14);
+            this.tb_rspeed.Name = "tb_rspeed";
+            this.tb_rspeed.Size = new System.Drawing.Size(85, 21);
+            this.tb_rspeed.TabIndex = 21;
+            this.tb_rspeed.Text = "0.0";
+            // 
+            // btn_relmove
+            // 
+            this.btn_relmove.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_relmove.Location = new System.Drawing.Point(37, 166);
+            this.btn_relmove.Name = "btn_relmove";
+            this.btn_relmove.Size = new System.Drawing.Size(100, 50);
+            this.btn_relmove.TabIndex = 24;
+            this.btn_relmove.Text = "Start Move";
+            this.btn_relmove.UseVisualStyleBackColor = true;
+            this.btn_relmove.Click += new System.EventHandler(this.btn_relmove_Click);
+            // 
+            // tb_raccel
+            // 
+            this.tb_raccel.Location = new System.Drawing.Point(139, 41);
+            this.tb_raccel.Name = "tb_raccel";
+            this.tb_raccel.Size = new System.Drawing.Size(85, 21);
+            this.tb_raccel.TabIndex = 22;
+            this.tb_raccel.Text = "0.0";
+            // 
+            // tb_rjerk
+            // 
+            this.tb_rjerk.Location = new System.Drawing.Point(139, 68);
+            this.tb_rjerk.Name = "tb_rjerk";
+            this.tb_rjerk.Size = new System.Drawing.Size(85, 21);
+            this.tb_rjerk.TabIndex = 23;
+            this.tb_rjerk.Text = "0.0";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label8.Location = new System.Drawing.Point(34, 73);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(35, 16);
+            this.label8.TabIndex = 20;
+            this.label8.Text = "Jerk";
+            // 
+            // tab_absmove
+            // 
+            this.tab_absmove.Controls.Add(this.tb_atarget);
+            this.tab_absmove.Controls.Add(this.label10);
+            this.tab_absmove.Controls.Add(this.label11);
+            this.tab_absmove.Controls.Add(this.btn_astop);
+            this.tab_absmove.Controls.Add(this.label12);
+            this.tab_absmove.Controls.Add(this.tb_aspeed);
+            this.tab_absmove.Controls.Add(this.btn_absmove);
+            this.tab_absmove.Controls.Add(this.tb_aaccel);
+            this.tab_absmove.Controls.Add(this.tb_ajerk);
+            this.tab_absmove.Controls.Add(this.label13);
+            this.tab_absmove.Location = new System.Drawing.Point(4, 22);
+            this.tab_absmove.Name = "tab_absmove";
+            this.tab_absmove.Padding = new System.Windows.Forms.Padding(3);
+            this.tab_absmove.Size = new System.Drawing.Size(670, 231);
+            this.tab_absmove.TabIndex = 2;
+            this.tab_absmove.Text = "Absolute Move";
+            this.tab_absmove.UseVisualStyleBackColor = true;
+            // 
+            // tb_atarget
+            // 
+            this.tb_atarget.Location = new System.Drawing.Point(139, 95);
+            this.tb_atarget.Name = "tb_atarget";
+            this.tb_atarget.Size = new System.Drawing.Size(85, 21);
+            this.tb_atarget.TabIndex = 37;
+            this.tb_atarget.Text = "0.0";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label10.Location = new System.Drawing.Point(34, 100);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(53, 16);
+            this.label10.TabIndex = 36;
+            this.label10.Text = "Target";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label11.Location = new System.Drawing.Point(34, 19);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(53, 16);
+            this.label11.TabIndex = 28;
+            this.label11.Text = "Speed";
+            // 
+            // btn_astop
+            // 
+            this.btn_astop.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_astop.Location = new System.Drawing.Point(536, 166);
+            this.btn_astop.Name = "btn_astop";
+            this.btn_astop.Size = new System.Drawing.Size(100, 50);
+            this.btn_astop.TabIndex = 35;
+            this.btn_astop.Text = "Stop Move";
+            this.btn_astop.UseVisualStyleBackColor = true;
+            this.btn_astop.Click += new System.EventHandler(this.btn_astop_Click);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label12.Location = new System.Drawing.Point(34, 46);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(99, 16);
+            this.label12.TabIndex = 29;
+            this.label12.Text = "Accel(Decel)";
+            // 
+            // tb_aspeed
+            // 
+            this.tb_aspeed.Location = new System.Drawing.Point(139, 14);
+            this.tb_aspeed.Name = "tb_aspeed";
+            this.tb_aspeed.Size = new System.Drawing.Size(85, 21);
+            this.tb_aspeed.TabIndex = 31;
+            this.tb_aspeed.Text = "0.0";
+            // 
+            // btn_absmove
+            // 
+            this.btn_absmove.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_absmove.Location = new System.Drawing.Point(37, 166);
+            this.btn_absmove.Name = "btn_absmove";
+            this.btn_absmove.Size = new System.Drawing.Size(100, 50);
+            this.btn_absmove.TabIndex = 34;
+            this.btn_absmove.Text = "Start Move";
+            this.btn_absmove.UseVisualStyleBackColor = true;
+            this.btn_absmove.Click += new System.EventHandler(this.btn_absmove_Click);
+            // 
+            // tb_aaccel
+            // 
+            this.tb_aaccel.Location = new System.Drawing.Point(139, 41);
+            this.tb_aaccel.Name = "tb_aaccel";
+            this.tb_aaccel.Size = new System.Drawing.Size(85, 21);
+            this.tb_aaccel.TabIndex = 32;
+            this.tb_aaccel.Text = "0.0";
+            // 
+            // tb_ajerk
+            // 
+            this.tb_ajerk.Location = new System.Drawing.Point(139, 68);
+            this.tb_ajerk.Name = "tb_ajerk";
+            this.tb_ajerk.Size = new System.Drawing.Size(85, 21);
+            this.tb_ajerk.TabIndex = 33;
+            this.tb_ajerk.Text = "0.0";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label13.Location = new System.Drawing.Point(34, 73);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(35, 16);
+            this.label13.TabIndex = 30;
+            this.label13.Text = "Jerk";
             // 
             // UCServoControl
             // 
@@ -342,25 +627,26 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.btn_stop);
-            this.Controls.Add(this.btn_minus);
-            this.Controls.Add(this.btn_plus);
-            this.Controls.Add(this.label7);
             this.Name = "UCServoControl";
             this.Size = new System.Drawing.Size(690, 380);
             this.Load += new System.EventHandler(this.UCServoControl_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
+            this.tabcontrol1.ResumeLayout(false);
+            this.tab_velmove.ResumeLayout(false);
+            this.tab_velmove.PerformLayout();
+            this.tab_relmove.ResumeLayout(false);
+            this.tab_relmove.PerformLayout();
+            this.tab_absmove.ResumeLayout(false);
+            this.tab_absmove.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox tb_encoder;
         private System.Windows.Forms.Label label2;
@@ -368,16 +654,15 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox tb_speed;
-        private System.Windows.Forms.TextBox tb_accel;
-        private System.Windows.Forms.TextBox tb_jerk;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Button btn_plus;
-        private System.Windows.Forms.Button btn_minus;
+        private System.Windows.Forms.TextBox tb_vspeed;
+        private System.Windows.Forms.TextBox tb_vaccel;
+        private System.Windows.Forms.TextBox tb_vjerk;
+        private System.Windows.Forms.Button btn_plus_velmove;
+        private System.Windows.Forms.Button btn_minus_velmove;
         private System.Windows.Forms.Button btn_servo;
         private System.Windows.Forms.Label lb_servo;
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.Button btn_stop;
+        private System.Windows.Forms.Button btn_vstop;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label lb_axis;
         private System.Windows.Forms.GroupBox groupBox2;
@@ -387,5 +672,30 @@
         private System.Windows.Forms.Button btn_org;
         private System.Windows.Forms.Label lb_org;
         private System.Windows.Forms.Button btn_not;
+        private System.Windows.Forms.TabControl tabcontrol1;
+        private System.Windows.Forms.TabPage tab_velmove;
+        private System.Windows.Forms.Label lb_jog;
+        private System.Windows.Forms.TabPage tab_relmove;
+        private System.Windows.Forms.TextBox tb_rtarget;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button btn_rstop;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox tb_rspeed;
+        private System.Windows.Forms.Button btn_relmove;
+        private System.Windows.Forms.TextBox tb_raccel;
+        private System.Windows.Forms.TextBox tb_rjerk;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TabPage tab_absmove;
+        private System.Windows.Forms.TextBox tb_atarget;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Button btn_astop;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox tb_aspeed;
+        private System.Windows.Forms.Button btn_absmove;
+        private System.Windows.Forms.TextBox tb_aaccel;
+        private System.Windows.Forms.TextBox tb_ajerk;
+        private System.Windows.Forms.Label label13;
     }
 }

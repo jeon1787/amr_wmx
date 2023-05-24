@@ -26,17 +26,16 @@ namespace amr_wmx.UI
             for (int i = 0; i < axesStatus.Length; i++)
             {
                 comboList[i] = string.Format("Axis{0}", Convert.ToString(i));    
-                //comboBox1.Items.Add(i);
             }
-            comboBox1.Items.AddRange(comboList);
+            comboBox.Items.AddRange(comboList);
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void comboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //ServoStatusRefresh();
+            ServoStatusUpdate();
         }
 
-        private void comboBox1_SelectionChangeCommitted(object sender, EventArgs e)
+        private void comboBox_SelectionChangeCommitted(object sender, EventArgs e)
         {
             ServoStatusUpdate();
         }
@@ -48,13 +47,13 @@ namespace amr_wmx.UI
 
         private void ServoStatusUpdate()
         {
-            if (comboBox1.SelectedIndex == -1) return;
+            if (comboBox.SelectedIndex == -1) return;
 
             try
             {
-                // button Text Update
-                var axesStatus = AClassSupporter.manualController.GetAxesStatus();
-                var axisStatus = axesStatus[comboBox1.SelectedIndex];
+                // Servo State update
+                var axesStatus = AClassSupporter.statusController.GetAxesStatus();
+                var axisStatus = axesStatus[comboBox.SelectedIndex];
                 if (axisStatus.ServoOn)
                 {
                     btn_servo.Text = "OFF";
@@ -67,12 +66,12 @@ namespace amr_wmx.UI
                 }
 
 
-                // encoder, command Text Update
+                // Encoder, Command position update
                 tb_encoder.Text = axisStatus.ActualPos.ToString();
                 tb_command.Text = axisStatus.PosCmd.ToString();
 
 
-                // Positive Limit, Negative Limit, Home Switch
+                // Positive Limit, Negative Limit, Home Switch state update
                 btn_pot.BackColor = axisStatus.PositiveLS ? Color.Yellow : Color.White;
                 btn_not.BackColor = axisStatus.NegativeLS ? Color.Yellow : Color.White;
                 btn_org.BackColor = axisStatus.HomeSwitch ? Color.Yellow : Color.White;
@@ -83,73 +82,25 @@ namespace amr_wmx.UI
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btn_servo_Click(object sender, EventArgs e)
         {
             var axesStatus = AClassSupporter.manualController.GetAxesStatus();
-            if (axesStatus[comboBox1.SelectedIndex].ServoOn)
+            if (axesStatus[comboBox.SelectedIndex].ServoOn)
             {
                 // Servo OFF
-                AClassSupporter.manualController.SetServoOn(comboBox1.SelectedIndex, false);            
+                AClassSupporter.manualController.SetServoOn(comboBox.SelectedIndex, false);            
             }
             else
             {
                 // Servo ON
-                AClassSupporter.manualController.SetServoOn(comboBox1.SelectedIndex, true);            
-            }
-        }
-
-        private void plusButton_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (checkServoStatus())
-            {
-                Console.WriteLine("plusdown");
-                AClassSupporter.manualController.StartJog(
-                    comboBox1.SelectedIndex, 
-                    Convert.ToDouble(tb_speed.Text),
-                    Convert.ToDouble(tb_accel.Text),
-                    Convert.ToDouble(tb_accel.Text),
-                    Convert.ToDouble(tb_jerk.Text),
-                    Convert.ToDouble(tb_jerk.Text));
-            }
-        }
-
-        private void minusButton_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (checkServoStatus())
-            {
-                Console.WriteLine("minusdown");
-                AClassSupporter.manualController.StartJog(
-                    comboBox1.SelectedIndex,
-                    -Convert.ToDouble(tb_speed.Text),
-                    Convert.ToDouble(tb_accel.Text),
-                    Convert.ToDouble(tb_accel.Text),
-                    Convert.ToDouble(tb_jerk.Text),
-                    Convert.ToDouble(tb_jerk.Text));
-            }
-        }
-
-        private void plusButton_MouseUp(object sender, MouseEventArgs e)
-        {
-            if (checkServoStatus())
-            {
-                Console.WriteLine("plusUp");
-                AClassSupporter.manualController.StopMotion(comboBox1.SelectedIndex);
-            }
-        }
-
-        private void minusButton_MouseUp(object sender, MouseEventArgs e)
-        {
-            if (checkServoStatus())
-            {
-                Console.WriteLine("minusUp");
-                AClassSupporter.manualController.StopMotion(comboBox1.SelectedIndex);
+                AClassSupporter.manualController.SetServoOn(comboBox.SelectedIndex, true);            
             }
         }
 
         private bool checkServoStatus()
         {
             var axesStatus = AClassSupporter.manualController.GetAxesStatus();
-            var isServoOn = axesStatus[comboBox1.SelectedIndex].ServoOn;
+            var isServoOn = axesStatus[comboBox.SelectedIndex].ServoOn;
 
             if (!isServoOn)
             {
@@ -160,10 +111,105 @@ namespace amr_wmx.UI
             return true;
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
+        #region VelMove Button Event
+        private void btn_plus_velmove_MouseDown(object sender, MouseEventArgs e)
         {
-            AClassSupporter.manualController.StopMotion(comboBox1.SelectedIndex);
+            if (checkServoStatus())
+            {
+                Console.WriteLine("plus down");
+                AClassSupporter.manualController.VelMove(
+                    comboBox.SelectedIndex, 
+                    Convert.ToDouble(tb_vspeed.Text),
+                    Convert.ToDouble(tb_vaccel.Text),
+                    Convert.ToDouble(tb_vaccel.Text),
+                    Convert.ToDouble(tb_vjerk.Text),
+                    Convert.ToDouble(tb_vjerk.Text));
+            }
         }
 
+        private void btn_minus_velmove_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (checkServoStatus())
+            {
+                Console.WriteLine("minus down");
+                AClassSupporter.manualController.VelMove(
+                    comboBox.SelectedIndex,
+                    -Convert.ToDouble(tb_vspeed.Text),
+                    Convert.ToDouble(tb_vaccel.Text),
+                    Convert.ToDouble(tb_vaccel.Text),
+                    Convert.ToDouble(tb_vjerk.Text),
+                    Convert.ToDouble(tb_vjerk.Text));
+            }
+        }
+
+        private void btn_plus_velmove_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (checkServoStatus())
+            {
+                Console.WriteLine("plus up");
+                AClassSupporter.manualController.StopMotion(comboBox.SelectedIndex);
+            }
+        }
+
+        private void btn_minus_velmove_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (checkServoStatus())
+            {
+                Console.WriteLine("minus pp");
+                AClassSupporter.manualController.StopMotion(comboBox.SelectedIndex);
+            }
+        }
+
+        private void btn_vstop_Click(object sender, EventArgs e)
+        {
+            AClassSupporter.manualController.StopMotion(comboBox.SelectedIndex);
+        }
+        #endregion
+
+        #region RelMove Button Event
+        private void btn_relmove_Click(object sender, EventArgs e)
+        {
+            if (checkServoStatus())
+            {
+                Console.WriteLine("relmove click");
+                AClassSupporter.manualController.RelMove(
+                    comboBox.SelectedIndex,
+                    Convert.ToDouble(tb_rtarget.Text),
+                    Convert.ToDouble(tb_rspeed.Text),
+                    Convert.ToDouble(tb_raccel.Text),
+                    Convert.ToDouble(tb_raccel.Text),
+                    Convert.ToDouble(tb_rjerk.Text),
+                    Convert.ToDouble(tb_rjerk.Text));
+            }
+        }
+
+        private void btn_rstop_Click(object sender, EventArgs e)
+        {
+            AClassSupporter.manualController.StopMotion(comboBox.SelectedIndex);
+        }
+        #endregion
+
+        #region AbsMove Button Event
+        private void btn_absmove_Click(object sender, EventArgs e)
+        {
+            if (checkServoStatus())
+            {
+                Console.WriteLine("absmove click");
+                AClassSupporter.manualController.AbsMove(
+                    comboBox.SelectedIndex,
+                    Convert.ToDouble(tb_atarget.Text),
+                    Convert.ToDouble(tb_aspeed.Text),
+                    Convert.ToDouble(tb_aaccel.Text),
+                    Convert.ToDouble(tb_aaccel.Text),
+                    Convert.ToDouble(tb_ajerk.Text),
+                    Convert.ToDouble(tb_ajerk.Text));
+            }
+        }
+
+        private void btn_astop_Click(object sender, EventArgs e)
+        {
+            AClassSupporter.manualController.StopMotion(comboBox.SelectedIndex);
+        }
     }
+    #endregion
 }
