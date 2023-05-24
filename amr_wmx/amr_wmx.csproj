@@ -157,6 +157,12 @@
     <Compile Include="UI\UCServoControl.Designer.cs">
       <DependentUpon>UCServoControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\UDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\UDialog.Designer.cs">
+      <DependentUpon>UDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="WMXController.cs" />
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -175,6 +181,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\UCServoControl.resx">
       <DependentUpon>UCServoControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\UDialog.resx">
+      <DependentUpon>UDialog.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

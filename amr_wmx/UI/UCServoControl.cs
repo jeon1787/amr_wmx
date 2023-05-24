@@ -16,6 +16,7 @@ namespace amr_wmx.UI
         public UCServoControl()
         {
             InitializeComponent();
+            timer1.Enabled = true;
         }
 
         private void UCServoControl_Load(object sender, EventArgs e)
@@ -32,24 +33,44 @@ namespace amr_wmx.UI
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ServoButtonTextRefresh();
+            //ServoStatusRefresh();
+        }
+
+        private void comboBox1_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            ServoStatusUpdate();
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            ServoButtonTextRefresh();
+            ServoStatusUpdate();
         }
 
-        private void ServoButtonTextRefresh()
+        private void ServoStatusUpdate()
         {
-            var axesStatus = AClassSupporter.manualController.GetAxesStatus();
-            if (axesStatus[comboBox1.SelectedIndex].ServoOn)
-            {
-                servoOnOff.Text = "OFF";
+            if (comboBox1.SelectedIndex == -1) return;
+
+            try
+            { 
+                // button Text Update
+                var axesStatus = AClassSupporter.manualController.GetAxesStatus();
+                var axisStatus = axesStatus[comboBox1.SelectedIndex];
+                if (axisStatus.ServoOn)
+                {
+                    servoOnOff.Text = "OFF";
+                }
+                else
+                {
+                    servoOnOff.Text = "ON";
+                }
+
+                // encoder, command Text Update
+                tb_encoder.Text = axisStatus.ActualPos.ToString();
+                tb_command.Text = axisStatus.PosCmd.ToString();
             }
-            else
-            {
-                servoOnOff.Text = "ON";
+            catch (IndexOutOfRangeException e) 
+            { 
+                Console.WriteLine(e.Message);
             }
         }
 
@@ -68,26 +89,72 @@ namespace amr_wmx.UI
             }
         }
 
-        private void plusButton_Click(object sender, EventArgs e)
+        private void plusButton_MouseDown(object sender, MouseEventArgs e)
         {
-            AClassSupporter.manualController.StartJog(
-                comboBox1.SelectedIndex, 
-                Convert.ToInt32(speedValue),
-                Convert.ToInt32(accelValue),
-                Convert.ToInt32(accelValue),
-                Convert.ToInt32(jerkValue),
-                Convert.ToDouble(jerkValue));
+            if (checkServoStatus())
+            {
+                Console.WriteLine("plusdown");
+                AClassSupporter.manualController.StartJog(
+                    comboBox1.SelectedIndex, 
+                    Convert.ToInt32(tb_speed.Text),
+                    Convert.ToInt32(tb_accel.Text),
+                    Convert.ToInt32(tb_accel.Text),
+                    Convert.ToDouble(tb_jerk.Text),
+                    Convert.ToDouble(tb_jerk.Text));
+            }
         }
 
-        private void minusButton_Click(object sender, EventArgs e)
+        private void minusButton_MouseDown(object sender, MouseEventArgs e)
         {
-            AClassSupporter.manualController.StartJog(
-                comboBox1.SelectedIndex,
-                -Convert.ToInt32(speedValue),
-                Convert.ToInt32(accelValue),
-                Convert.ToInt32(accelValue),
-                Convert.ToInt32(jerkValue),
-                Convert.ToDouble(jerkValue));
+            if (checkServoStatus())
+            {
+                Console.WriteLine("minusdown");
+                AClassSupporter.manualController.StartJog(
+                    comboBox1.SelectedIndex,
+                    -Convert.ToInt32(tb_speed.Text),
+                    Convert.ToInt32(tb_accel.Text),
+                    Convert.ToInt32(tb_accel.Text),
+                    Convert.ToDouble(tb_jerk.Text),
+                    Convert.ToDouble(tb_jerk.Text));
+            }
         }
+
+        private void plusButton_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (checkServoStatus())
+            {
+                Console.WriteLine("plusUp");
+                AClassSupporter.manualController.StopMotion(comboBox1.SelectedIndex);
+            }
+        }
+
+        private void minusButton_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (checkServoStatus())
+            {
+                Console.WriteLine("minusUp");
+                AClassSupporter.manualController.StopMotion(comboBox1.SelectedIndex);
+            }
+        }
+
+        private bool checkServoStatus()
+        {
+            var axesStatus = AClassSupporter.manualController.GetAxesStatus();
+            var isServoOn = axesStatus[comboBox1.SelectedIndex].ServoOn;
+
+            if (!isServoOn)
+            {
+                UDialog dialog = new UDialog();
+                dialog.ShowDialog();
+                return false;
+            }
+            return true;
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            AClassSupporter.manualController.StopMotion(comboBox1.SelectedIndex);
+        }
+
     }
 }

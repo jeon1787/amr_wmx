@@ -133,12 +133,12 @@ namespace amr_wmx
                 if (turnOn)
                 {
                     // ON
-                    coreMotion.AxisControl.SetServoOn(0, 1);
+                    coreMotion.AxisControl.SetServoOn(axis, 1);
                 }
                 else
                 {
                     // OFF
-                    coreMotion.AxisControl.SetServoOn(0, 0);
+                    coreMotion.AxisControl.SetServoOn(axis, 0);
                 }
             }
         }
@@ -165,7 +165,6 @@ namespace amr_wmx
         {
             var cmStatus = new CoreMotionStatus();
             coreMotion.GetStatus(ref cmStatus);
-            cmStatus.AxesStatus[0].
             return cmStatus.AxesStatus;
         }
         #endregion
