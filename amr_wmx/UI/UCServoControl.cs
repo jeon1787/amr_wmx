@@ -51,22 +51,29 @@ namespace amr_wmx.UI
             if (comboBox1.SelectedIndex == -1) return;
 
             try
-            { 
+            {
                 // button Text Update
                 var axesStatus = AClassSupporter.manualController.GetAxesStatus();
                 var axisStatus = axesStatus[comboBox1.SelectedIndex];
                 if (axisStatus.ServoOn)
                 {
-                    servoOnOff.Text = "OFF";
+                    btn_servo.Text = "OFF";
                 }
                 else
                 {
-                    servoOnOff.Text = "ON";
+                    btn_servo.Text = "ON";
                 }
+
 
                 // encoder, command Text Update
                 tb_encoder.Text = axisStatus.ActualPos.ToString();
                 tb_command.Text = axisStatus.PosCmd.ToString();
+
+
+                // Positive Limit, Negative Limit, Home Switch
+                btn_pot.BackColor = axisStatus.PositiveLS ? Color.Yellow : Color.Gray;
+                btn_not.BackColor = axisStatus.NegativeLS ? Color.Yellow : Color.Gray;
+                btn_org.BackColor = axisStatus.HomeSwitch ? Color.Yellow : Color.Gray;
             }
             catch (IndexOutOfRangeException e) 
             { 
@@ -96,9 +103,9 @@ namespace amr_wmx.UI
                 Console.WriteLine("plusdown");
                 AClassSupporter.manualController.StartJog(
                     comboBox1.SelectedIndex, 
-                    Convert.ToInt32(tb_speed.Text),
-                    Convert.ToInt32(tb_accel.Text),
-                    Convert.ToInt32(tb_accel.Text),
+                    Convert.ToDouble(tb_speed.Text),
+                    Convert.ToDouble(tb_accel.Text),
+                    Convert.ToDouble(tb_accel.Text),
                     Convert.ToDouble(tb_jerk.Text),
                     Convert.ToDouble(tb_jerk.Text));
             }
@@ -111,9 +118,9 @@ namespace amr_wmx.UI
                 Console.WriteLine("minusdown");
                 AClassSupporter.manualController.StartJog(
                     comboBox1.SelectedIndex,
-                    -Convert.ToInt32(tb_speed.Text),
-                    Convert.ToInt32(tb_accel.Text),
-                    Convert.ToInt32(tb_accel.Text),
+                    -Convert.ToDouble(tb_speed.Text),
+                    Convert.ToDouble(tb_accel.Text),
+                    Convert.ToDouble(tb_accel.Text),
                     Convert.ToDouble(tb_jerk.Text),
                     Convert.ToDouble(tb_jerk.Text));
             }

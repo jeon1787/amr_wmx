@@ -41,15 +41,21 @@
             this.tb_accel = new System.Windows.Forms.TextBox();
             this.tb_jerk = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.plusButton = new System.Windows.Forms.Button();
-            this.minusButton = new System.Windows.Forms.Button();
-            this.servoOnOff = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
+            this.btn_plus = new System.Windows.Forms.Button();
+            this.btn_minus = new System.Windows.Forms.Button();
+            this.btn_servo = new System.Windows.Forms.Button();
+            this.lb_servo = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.manualStop = new System.Windows.Forms.Button();
+            this.btn_stop = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label8 = new System.Windows.Forms.Label();
+            this.lb_axis = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.lb_not = new System.Windows.Forms.Label();
+            this.btn_not = new System.Windows.Forms.Button();
+            this.lb_org = new System.Windows.Forms.Label();
+            this.btn_org = new System.Windows.Forms.Button();
+            this.lb_pot = new System.Windows.Forms.Label();
+            this.btn_pot = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -57,7 +63,7 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(118, 22);
+            this.comboBox1.Location = new System.Drawing.Point(50, 20);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(101, 20);
             this.comboBox1.TabIndex = 0;
@@ -68,7 +74,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label1.Location = new System.Drawing.Point(338, 29);
+            this.label1.Location = new System.Drawing.Point(6, 63);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(68, 16);
             this.label1.TabIndex = 1;
@@ -76,7 +82,7 @@
             // 
             // tb_encoder
             // 
-            this.tb_encoder.Location = new System.Drawing.Point(425, 24);
+            this.tb_encoder.Location = new System.Drawing.Point(83, 58);
             this.tb_encoder.Name = "tb_encoder";
             this.tb_encoder.Size = new System.Drawing.Size(85, 21);
             this.tb_encoder.TabIndex = 2;
@@ -86,7 +92,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label2.Location = new System.Drawing.Point(336, 61);
+            this.label2.Location = new System.Drawing.Point(219, 63);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(81, 16);
             this.label2.TabIndex = 3;
@@ -94,7 +100,7 @@
             // 
             // tb_command
             // 
-            this.tb_command.Location = new System.Drawing.Point(425, 56);
+            this.tb_command.Location = new System.Drawing.Point(306, 58);
             this.tb_command.Name = "tb_command";
             this.tb_command.Size = new System.Drawing.Size(85, 21);
             this.tb_command.TabIndex = 4;
@@ -104,7 +110,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label3.Location = new System.Drawing.Point(77, 29);
+            this.label3.Location = new System.Drawing.Point(6, 72);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(53, 16);
             this.label3.TabIndex = 5;
@@ -114,7 +120,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label4.Location = new System.Drawing.Point(77, 61);
+            this.label4.Location = new System.Drawing.Point(6, 110);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(99, 16);
             this.label4.TabIndex = 6;
@@ -124,7 +130,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label6.Location = new System.Drawing.Point(77, 93);
+            this.label6.Location = new System.Drawing.Point(6, 147);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(35, 16);
             this.label6.TabIndex = 7;
@@ -132,7 +138,7 @@
             // 
             // tb_speed
             // 
-            this.tb_speed.Location = new System.Drawing.Point(183, 24);
+            this.tb_speed.Location = new System.Drawing.Point(119, 67);
             this.tb_speed.Name = "tb_speed";
             this.tb_speed.Size = new System.Drawing.Size(85, 21);
             this.tb_speed.TabIndex = 8;
@@ -140,7 +146,7 @@
             // 
             // tb_accel
             // 
-            this.tb_accel.Location = new System.Drawing.Point(183, 56);
+            this.tb_accel.Location = new System.Drawing.Point(119, 105);
             this.tb_accel.Name = "tb_accel";
             this.tb_accel.Size = new System.Drawing.Size(85, 21);
             this.tb_accel.TabIndex = 9;
@@ -148,7 +154,7 @@
             // 
             // tb_jerk
             // 
-            this.tb_jerk.Location = new System.Drawing.Point(183, 88);
+            this.tb_jerk.Location = new System.Drawing.Point(119, 142);
             this.tb_jerk.Name = "tb_jerk";
             this.tb_jerk.Size = new System.Drawing.Size(85, 21);
             this.tb_jerk.TabIndex = 10;
@@ -158,90 +164,105 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label7.Location = new System.Drawing.Point(205, 280);
+            this.label7.Location = new System.Drawing.Point(122, 333);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(32, 16);
             this.label7.TabIndex = 12;
             this.label7.Text = "Jog";
             // 
-            // plusButton
+            // btn_plus
             // 
-            this.plusButton.Location = new System.Drawing.Point(70, 265);
-            this.plusButton.Name = "plusButton";
-            this.plusButton.Size = new System.Drawing.Size(100, 50);
-            this.plusButton.TabIndex = 13;
-            this.plusButton.Text = "+";
-            this.plusButton.UseVisualStyleBackColor = true;
-            this.plusButton.MouseDown += new System.Windows.Forms.MouseEventHandler(this.plusButton_MouseDown);
-            this.plusButton.MouseUp += new System.Windows.Forms.MouseEventHandler(this.plusButton_MouseUp);
+            this.btn_plus.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_plus.Location = new System.Drawing.Point(12, 318);
+            this.btn_plus.Name = "btn_plus";
+            this.btn_plus.Size = new System.Drawing.Size(100, 50);
+            this.btn_plus.TabIndex = 13;
+            this.btn_plus.Text = "+";
+            this.btn_plus.UseVisualStyleBackColor = true;
+            this.btn_plus.MouseDown += new System.Windows.Forms.MouseEventHandler(this.plusButton_MouseDown);
+            this.btn_plus.MouseUp += new System.Windows.Forms.MouseEventHandler(this.plusButton_MouseUp);
             // 
-            // minusButton
+            // btn_minus
             // 
-            this.minusButton.Location = new System.Drawing.Point(265, 265);
-            this.minusButton.Name = "minusButton";
-            this.minusButton.Size = new System.Drawing.Size(100, 50);
-            this.minusButton.TabIndex = 14;
-            this.minusButton.Text = "-";
-            this.minusButton.UseVisualStyleBackColor = true;
-            this.minusButton.MouseDown += new System.Windows.Forms.MouseEventHandler(this.minusButton_MouseDown);
-            this.minusButton.MouseUp += new System.Windows.Forms.MouseEventHandler(this.minusButton_MouseUp);
+            this.btn_minus.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_minus.Location = new System.Drawing.Point(160, 318);
+            this.btn_minus.Name = "btn_minus";
+            this.btn_minus.Size = new System.Drawing.Size(100, 50);
+            this.btn_minus.TabIndex = 14;
+            this.btn_minus.Text = "-";
+            this.btn_minus.UseVisualStyleBackColor = true;
+            this.btn_minus.MouseDown += new System.Windows.Forms.MouseEventHandler(this.minusButton_MouseDown);
+            this.btn_minus.MouseUp += new System.Windows.Forms.MouseEventHandler(this.minusButton_MouseUp);
             // 
-            // servoOnOff
+            // btn_servo
             // 
-            this.servoOnOff.Location = new System.Drawing.Point(528, 13);
-            this.servoOnOff.Name = "servoOnOff";
-            this.servoOnOff.Size = new System.Drawing.Size(63, 36);
-            this.servoOnOff.TabIndex = 15;
-            this.servoOnOff.Text = "ON";
-            this.servoOnOff.UseVisualStyleBackColor = true;
-            this.servoOnOff.Click += new System.EventHandler(this.button1_Click);
+            this.btn_servo.BackColor = System.Drawing.SystemColors.Control;
+            this.btn_servo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_servo.Location = new System.Drawing.Point(222, 13);
+            this.btn_servo.Name = "btn_servo";
+            this.btn_servo.Size = new System.Drawing.Size(63, 36);
+            this.btn_servo.TabIndex = 15;
+            this.btn_servo.Text = "ON";
+            this.btn_servo.UseVisualStyleBackColor = false;
+            this.btn_servo.Click += new System.EventHandler(this.button1_Click);
             // 
-            // label5
+            // lb_servo
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label5.Location = new System.Drawing.Point(461, 26);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(49, 16);
-            this.label5.TabIndex = 16;
-            this.label5.Text = "Servo";
+            this.lb_servo.AutoSize = true;
+            this.lb_servo.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lb_servo.Location = new System.Drawing.Point(167, 22);
+            this.lb_servo.Name = "lb_servo";
+            this.lb_servo.Size = new System.Drawing.Size(49, 16);
+            this.lb_servo.TabIndex = 16;
+            this.lb_servo.Text = "Servo";
             // 
             // timer1
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // manualStop
+            // btn_stop
             // 
-            this.manualStop.Location = new System.Drawing.Point(518, 265);
-            this.manualStop.Name = "manualStop";
-            this.manualStop.Size = new System.Drawing.Size(100, 50);
-            this.manualStop.TabIndex = 17;
-            this.manualStop.Text = "Manual Stop";
-            this.manualStop.UseVisualStyleBackColor = true;
-            this.manualStop.Click += new System.EventHandler(this.button1_Click_1);
+            this.btn_stop.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_stop.Location = new System.Drawing.Point(275, 318);
+            this.btn_stop.Name = "btn_stop";
+            this.btn_stop.Size = new System.Drawing.Size(100, 50);
+            this.btn_stop.TabIndex = 17;
+            this.btn_stop.Text = "Manual Stop";
+            this.btn_stop.UseVisualStyleBackColor = true;
+            this.btn_stop.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.label8);
+            this.groupBox1.Controls.Add(this.btn_pot);
+            this.groupBox1.Controls.Add(this.lb_pot);
+            this.groupBox1.Controls.Add(this.btn_org);
+            this.groupBox1.Controls.Add(this.lb_org);
+            this.groupBox1.Controls.Add(this.btn_not);
+            this.groupBox1.Controls.Add(this.lb_not);
+            this.groupBox1.Controls.Add(this.tb_command);
+            this.groupBox1.Controls.Add(this.lb_axis);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.tb_encoder);
+            this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.comboBox1);
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.servoOnOff);
+            this.groupBox1.Controls.Add(this.lb_servo);
+            this.groupBox1.Controls.Add(this.btn_servo);
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(684, 55);
+            this.groupBox1.Size = new System.Drawing.Size(684, 91);
             this.groupBox1.TabIndex = 18;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "AxisStatus";
             // 
-            // label8
+            // lb_axis
             // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label8.Location = new System.Drawing.Point(74, 26);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(38, 16);
-            this.label8.TabIndex = 17;
-            this.label8.Text = "Axis";
+            this.lb_axis.AutoSize = true;
+            this.lb_axis.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lb_axis.Location = new System.Drawing.Point(6, 22);
+            this.lb_axis.Name = "lb_axis";
+            this.lb_axis.Size = new System.Drawing.Size(38, 16);
+            this.lb_axis.TabIndex = 17;
+            this.lb_axis.Text = "Axis";
             // 
             // groupBox2
             // 
@@ -251,16 +272,69 @@
             this.groupBox2.Controls.Add(this.tb_speed);
             this.groupBox2.Controls.Add(this.tb_accel);
             this.groupBox2.Controls.Add(this.tb_jerk);
-            this.groupBox2.Controls.Add(this.tb_command);
-            this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Controls.Add(this.tb_encoder);
-            this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Location = new System.Drawing.Point(3, 64);
+            this.groupBox2.Location = new System.Drawing.Point(6, 100);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(684, 133);
+            this.groupBox2.Size = new System.Drawing.Size(684, 212);
             this.groupBox2.TabIndex = 19;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "JogCommand";
+            // 
+            // lb_not
+            // 
+            this.lb_not.AutoSize = true;
+            this.lb_not.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lb_not.Location = new System.Drawing.Point(339, 22);
+            this.lb_not.Name = "lb_not";
+            this.lb_not.Size = new System.Drawing.Size(39, 16);
+            this.lb_not.TabIndex = 18;
+            this.lb_not.Text = "NOT";
+            // 
+            // btn_not
+            // 
+            this.btn_not.BackColor = System.Drawing.Color.Gray;
+            this.btn_not.Location = new System.Drawing.Point(384, 15);
+            this.btn_not.Name = "btn_not";
+            this.btn_not.Size = new System.Drawing.Size(31, 29);
+            this.btn_not.TabIndex = 19;
+            this.btn_not.UseVisualStyleBackColor = false;
+            // 
+            // lb_org
+            // 
+            this.lb_org.AutoSize = true;
+            this.lb_org.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lb_org.Location = new System.Drawing.Point(437, 22);
+            this.lb_org.Name = "lb_org";
+            this.lb_org.Size = new System.Drawing.Size(40, 16);
+            this.lb_org.TabIndex = 20;
+            this.lb_org.Text = "ORG";
+            // 
+            // btn_org
+            // 
+            this.btn_org.BackColor = System.Drawing.Color.Gray;
+            this.btn_org.Location = new System.Drawing.Point(482, 15);
+            this.btn_org.Name = "btn_org";
+            this.btn_org.Size = new System.Drawing.Size(31, 29);
+            this.btn_org.TabIndex = 21;
+            this.btn_org.UseVisualStyleBackColor = false;
+            // 
+            // lb_pot
+            // 
+            this.lb_pot.AutoSize = true;
+            this.lb_pot.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lb_pot.Location = new System.Drawing.Point(537, 22);
+            this.lb_pot.Name = "lb_pot";
+            this.lb_pot.Size = new System.Drawing.Size(38, 16);
+            this.lb_pot.TabIndex = 22;
+            this.lb_pot.Text = "POT";
+            // 
+            // btn_pot
+            // 
+            this.btn_pot.BackColor = System.Drawing.Color.Gray;
+            this.btn_pot.Location = new System.Drawing.Point(582, 15);
+            this.btn_pot.Name = "btn_pot";
+            this.btn_pot.Size = new System.Drawing.Size(31, 29);
+            this.btn_pot.TabIndex = 23;
+            this.btn_pot.UseVisualStyleBackColor = false;
             // 
             // UCServoControl
             // 
@@ -268,9 +342,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.manualStop);
-            this.Controls.Add(this.minusButton);
-            this.Controls.Add(this.plusButton);
+            this.Controls.Add(this.btn_stop);
+            this.Controls.Add(this.btn_minus);
+            this.Controls.Add(this.btn_plus);
             this.Controls.Add(this.label7);
             this.Name = "UCServoControl";
             this.Size = new System.Drawing.Size(690, 380);
@@ -298,14 +372,20 @@
         private System.Windows.Forms.TextBox tb_accel;
         private System.Windows.Forms.TextBox tb_jerk;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Button plusButton;
-        private System.Windows.Forms.Button minusButton;
-        private System.Windows.Forms.Button servoOnOff;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button btn_plus;
+        private System.Windows.Forms.Button btn_minus;
+        private System.Windows.Forms.Button btn_servo;
+        private System.Windows.Forms.Label lb_servo;
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.Button manualStop;
+        private System.Windows.Forms.Button btn_stop;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label lb_axis;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label lb_not;
+        private System.Windows.Forms.Button btn_pot;
+        private System.Windows.Forms.Label lb_pot;
+        private System.Windows.Forms.Button btn_org;
+        private System.Windows.Forms.Label lb_org;
+        private System.Windows.Forms.Button btn_not;
     }
 }

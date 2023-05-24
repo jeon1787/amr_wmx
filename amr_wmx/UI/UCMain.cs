@@ -96,8 +96,8 @@ namespace amr_wmx.UI
             }
             textBox1.Text = engState;
             textBox2.Text = commState;
-            button1.Text = button1Text;
-            button2.Text = button2Text;
+            btn_engine.Text = button1Text;
+            btn_comm.Text = button2Text;
         }
     }
 }

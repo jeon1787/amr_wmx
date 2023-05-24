@@ -54,7 +54,7 @@ namespace amr_wmx
         }
         #endregion
 
-        #region CreateDevice
+        #region Create Device
         public void CreateDevice()
         {
             if (null != device)
@@ -160,7 +160,7 @@ namespace amr_wmx
         }
         #endregion
 
-        #region GetAxesStatus
+        #region Get Axes Status
         public CoreMotionAxisStatus[] GetAxesStatus()
         {
             var cmStatus = new CoreMotionStatus();
@@ -170,7 +170,7 @@ namespace amr_wmx
         #endregion
 
         #region Start Jog
-        public void StartJog(int axis, int vel, int acc, int dec, double jerkAcc, double jerkDel)
+        public void StartJog(int axis, double vel, double acc, double dec, double jerkAcc, double jerkDec)
         {
             JogCommand jogCommand = new JogCommand();
             jogCommand.Profile.Type = ProfileType.Trapezoidal; // 사다리
@@ -179,7 +179,7 @@ namespace amr_wmx
             jogCommand.Profile.Acc = acc;
             jogCommand.Profile.Dec = dec;
             jogCommand.Profile.JerkAccRatio = jerkAcc;
-            jogCommand.Profile.JerkDecRatio = jerkDel;
+            jogCommand.Profile.JerkDecRatio = jerkDec;
             coreMotion.Motion.StartJog(jogCommand);
         }
         #endregion

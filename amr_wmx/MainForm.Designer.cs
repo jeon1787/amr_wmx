@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btn_main = new System.Windows.Forms.Button();
+            this.btn_servo_control = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // panel1
@@ -40,33 +40,35 @@
             this.panel1.Size = new System.Drawing.Size(690, 380);
             this.panel1.TabIndex = 0;
             // 
-            // button1
+            // btn_main
             // 
-            this.button1.Location = new System.Drawing.Point(12, 65);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(92, 50);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Main\r\n";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btn_main.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_main.Location = new System.Drawing.Point(12, 65);
+            this.btn_main.Name = "btn_main";
+            this.btn_main.Size = new System.Drawing.Size(92, 50);
+            this.btn_main.TabIndex = 1;
+            this.btn_main.Text = "Main\r\n";
+            this.btn_main.UseVisualStyleBackColor = true;
+            this.btn_main.Click += new System.EventHandler(this.button1_Click);
             // 
-            // button2
+            // btn_servo_control
             // 
-            this.button2.Location = new System.Drawing.Point(12, 121);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(92, 50);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Servo\r\nControl";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.btn_servo_control.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_servo_control.Location = new System.Drawing.Point(12, 121);
+            this.btn_servo_control.Name = "btn_servo_control";
+            this.btn_servo_control.Size = new System.Drawing.Size(92, 50);
+            this.btn_servo_control.TabIndex = 2;
+            this.btn_servo_control.Text = "Servo\r\nControl";
+            this.btn_servo_control.UseVisualStyleBackColor = true;
+            this.btn_servo_control.Click += new System.EventHandler(this.button2_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btn_servo_control);
+            this.Controls.Add(this.btn_main);
             this.Controls.Add(this.panel1);
             this.Name = "MainForm";
             this.Text = "Form1";
@@ -78,8 +80,8 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btn_main;
+        private System.Windows.Forms.Button btn_servo_control;
     }
 }
 
